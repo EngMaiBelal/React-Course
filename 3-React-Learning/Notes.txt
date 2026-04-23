@@ -1,0 +1,428 @@
+1- In src\App.jsx
+    - 1) Add function header and call it in the bottom
+        - Custom Component => This is a simple functional component (Footer Component)
+            - that renders a paragraph with the text "My Footer", while the App component is responsible for rendering the main content of the application.
+            - It is used in the App component to display a footer message.
+            - is defined as a function that returns a JSX element.
+            - It can be reused in different parts of the application if needed, and it helps to keep the code organized by separating concerns.
+            - we should write the Footer component before the App component because the App component uses the Footer component.
+            - We can also write the Footer component in a separate file and import it into the App component, which is a common practice in larger applications to keep the code organized and maintainable.
+            - In this example, we have defined the Footer component in the same file for simplicity, but in a real application, it would be better to separate it into its own file and import it into the App component.
+            - we should write the footer component with uppercase because in React, 
+                - components must be defined with an uppercase first letter. 
+                - This is a convention that helps to distinguish components from regular HTML elements. If we define the Footer component with a lowercase first letter, it will be treated as a regular HTML element and will not work as expected. By following this convention and defining the Footer component with an uppercase first letter, we ensure that it is recognized as a React component and can be used correctly in our application.
+        - Code:-   
+            function Footer() {
+            return(
+                <footer>
+                    <p>Hello</p>
+                    <p className="ticks">
+                    My Footer Here
+                    </p>
+                </footer>
+            );
+            }
+            function App() {
+            return (
+                <>
+                    <div>
+                        <p>BlaBlaBlaaaaa</p>
+                    </div>
+                    <Footer />
+                </>
+            )
+            }
+    - 2) Dynamic text:
+        const myDynamicText =["Hello", "Welcome to React", "Enjoy coding!"];
+        
+        function getRandomText() {
+            const randomIndex = Math.floor(Math.random() * myDynamicText.length);
+            return myDynamicText[randomIndex];
+        }
+
+        function Footer() {
+            const dynamicText = getRandomText();
+        return(
+            <footer>
+                {/* <p>{getRandomText()}</p> */}
+                <p>{dynamicText}</p>
+                <p className="ticks">
+                My Footer Here
+                </p>
+            </footer>
+        );
+        }
+        function App() {
+        return (
+            <>
+                <div>
+                    <p>BlaBlaBlaaaaa</p>
+                </div>
+                <Footer />
+            </>
+        )
+        }
+    - 3) add image in my file by the best way
+        import personPhoto from './assets/m.webp'
+        in App
+        <img src={personPhoto} className="base" width="170" height="179" alt="" />
+    
+    - import personPhoto from './assets/m.webp' 
+        import './App.css'
+
+        const myDynamicText =["Hello", "Welcome to React", "Enjoy coding!"];
+        function getRandomText() {
+        const randomIndex = Math.floor(Math.random() * myDynamicText.length);
+        return myDynamicText[randomIndex];
+        }
+        function Footer() {
+            const dynamicText = getRandomText();
+        return(
+            <footer>
+                {/* <p>{getRandomText()}</p> */}
+                <p>{dynamicText}</p>
+                <p className="ticks">
+                My Footer Here
+                </p>
+            </footer>
+        );
+        }
+        function App() {
+        return (
+            <>
+            <section id="center">
+                <div className="hero">
+                <img src={personPhoto} className="base" width="170" height="179" alt="" />
+                </div>
+            <Footer />
+            </section>
+            </>
+        )
+        }
+
+        export default App
+_____________________________________________________________________________________
+        => Note:
+            - <> Fragment in React
+            - False in react you must return only element 
+                return (
+                <h1>Hello</h1>
+                <p>World</p>
+                )
+
+            - True But you donot need to add div in many times and it changes the design
+                return (
+                <div>
+                    <h1>Hello</h1>
+                    <p>World</p>
+                </div>
+                )
+
+            - Solution Fragment => the same result without any additions
+                return (
+                <>
+                    <h1>Hello</h1>
+                    <p>World</p>
+                </>
+                )
+
+            They are the same:-
+            <> </> and <React.Fragment></React.Fragment>
+            When to use <> </> vs <React.Fragment>:-
+            Case	                        Use <> </>	                Use <React.Fragment>
+            Simple code	                    ✔ Best choice	            Optional, not necessary
+            Want shorter syntax	            ✔ Yes	                    ❌ No
+            Need to add props (like key)	❌ Not possible	            ✔ Yes
+            Inside a loop (map)	            ❌ Usually not	            ✔ Preferred
+            Readability	                    ✔ Good	                     ✔ Good
+_____________________________________________________________________________________
+        => Task
+            - write your name, age and job title and use them in your page.
+                function App() {
+                const person = {
+                    name: "Omer",
+                    age: 22,
+                    job: "Frontend Developer"
+                };
+
+                return (
+                    <div style={styles.container}>
+                    <h1 style={styles.title}>User Profile</h1>
+
+                    <div style={styles.card}>
+                        <p><strong>Name:</strong> your name here</p>
+                        <p><strong>Age:</strong> your name here</p>
+                        <p><strong>Job:</strong> your job here</p>
+                    </div>
+                    </div>
+                );
+                }
+
+                const styles = {
+                container: {
+                    fontFamily: "Arial, sans-serif",
+                    textAlign: "center",
+                    marginTop: "50px",
+                    backgroundColor: "#0f172a", // dark background
+                    minHeight: "100vh",
+                    padding: "20px",
+                    color: "#e2e8f0"
+                },
+                title: {
+                    color: "#38bdf8", // blue glow
+                    marginBottom: "20px",
+                    letterSpacing: "1px"
+                },
+                card: {
+                    background: "linear-gradient(145deg, #1e293b, #0f172a)",
+                    padding: "25px",
+                    borderRadius: "15px",
+                    width: "280px",
+                    margin: "20px auto",
+                    boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+                    border: "1px solid #334155",
+                    transition: "0.3s"
+                }
+                };
+
+            - Solution:-
+                function App() {
+                    const person = {
+                        name: "Omer",
+                        age: 22,
+                        job: "Frontend Developer"
+                    };
+                    return (
+                        <div style={styles.container}>
+                        <h1 style={styles.title}>User Profile</h1>
+
+                        <div style={styles.card}>
+                            <p><strong>Name:</strong> {person.name}</p>
+                            <p><strong>Age:</strong> {person.age}</p>
+                            <p><strong>Job:</strong> {person.job}</p>
+                        </div>
+                        </div>
+                    );
+                }
+
+                const styles = {
+                    container: {
+                        fontFamily: "Arial, sans-serif",
+                        textAlign: "center",
+                        marginTop: "50px",
+                        backgroundColor: "#0f172a", // dark background
+                        minHeight: "100vh",
+                        padding: "20px",
+                        color: "#e2e8f0"
+                    },
+                    title: {
+                        color: "#38bdf8", // blue glow
+                        marginBottom: "20px",
+                        letterSpacing: "1px"
+                    },
+                    card: {
+                        background: "linear-gradient(145deg, #1e293b, #0f172a)",
+                        padding: "25px",
+                        borderRadius: "15px",
+                        width: "280px",
+                        margin: "20px auto",
+                        boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+                        border: "1px solid #334155",
+                        transition: "0.3s"
+                    }
+                };
+
+                export default App;  
+                    👉 lets other files import and use the App component
+                    👉 usually used for the main component in a file
+_____________________________________________________________________________________
+    - 4) How we make reusable components (task)
+        
+        a) First way
+            import cardPhoto1 from './assets/cards/card1.webp'
+            import cardPhoto2 from './assets/cards/card2.webp'
+            import cardPhoto3 from './assets/cards/card3.webp'
+            import cardPhoto4 from './assets/cards/card4.webp'
+            import './App.css'
+            function MakeReusableComponent(props) {
+                return (
+                    <div className="card">
+                    <h3>{props.title}</h3>
+                    <p>{props.description}</p>
+                    <img src={props.cardPhoto} alt="" />
+                    </div>
+                );
+            }
+            function App() {
+                return (
+                    <>
+                    <section id="center">
+                    <MakeReusableComponent
+                        title="Card 1"
+                        description="This is the first Card."
+                        cardPhoto={cardPhoto1}
+                    />
+
+                    <MakeReusableComponent
+                        title="Card 2"
+                        description="This is the second Card."
+                        cardPhoto={cardPhoto2}
+                    />
+
+                    <MakeReusableComponent
+                        title="Card 3"
+                        description="This is the third Card."
+                        cardPhoto={cardPhoto3}
+                    />
+
+                    <MakeReusableComponent
+                        title="Card 4"
+                        description="This is the fourth Card."
+                        cardPhoto={cardPhoto4}
+                    />
+                    </section>
+                    </>
+                )
+            }
+            export default App
+            
+        b) In professional way
+            - Make array of object in file data.js           
+                import cardPhoto1 from './assets/cards/card1.webp'
+                import cardPhoto2 from './assets/cards/card2.webp'
+                import cardPhoto3 from './assets/cards/card3.webp'
+                import cardPhoto4 from './assets/cards/card4.webp'
+
+                export const componentsData = [
+                {
+                    title: "Card 1",
+                    description: "This is the first Card.",
+                    cardPhoto: cardPhoto1
+                },
+                {
+                    title: "Card 2",
+                    description: "This is the second Card.",
+                    cardPhoto: cardPhoto2
+                },
+                {
+                    title: "Card 3",
+                    description: "This is the third Card.",
+                    cardPhoto: cardPhoto3
+                },
+                {
+                    title: "Card 4",
+                    description: "This is the fourth Card.",
+                    cardPhoto: cardPhoto4
+                }
+                ]
+
+            - In App.jsx
+                import './App.css'
+                import { componentsData } from './data'
+
+                function MakeReusableComponent(props) {
+                return (
+                    <div className="card">
+                    <h3>{props.title}</h3>
+                    <p>{props.description}</p>
+                    <img src={props.cardPhoto} alt="" />
+                    </div>
+                );
+                }
+                function App() {
+                return (
+                    <>
+                    <section id="center">
+                    <MakeReusableComponent
+                        title={componentsData[0].title}
+                        description={componentsData[0].description}
+                        cardPhoto={componentsData[0].cardPhoto}
+                    />
+
+                    <MakeReusableComponent
+                        title={componentsData[1].title}
+                        description={componentsData[1].description}
+                        cardPhoto={componentsData[1].cardPhoto}
+                    />
+
+                    <MakeReusableComponent
+                        title={componentsData[2].title}
+                        description={componentsData[2].description}
+                        cardPhoto={componentsData[2].cardPhoto}
+                    />
+
+                    <MakeReusableComponent
+                        title={componentsData[3].title}
+                        description={componentsData[3].description}
+                        cardPhoto={componentsData[3].cardPhoto}
+                    />
+                    </section>
+                    </>
+                )
+                }
+
+                export default App
+
+            - spread operator   
+            <section id="center">
+                    <MakeReusableComponent
+                        {...cardsData[0]}
+                        />
+                
+                    <MakeReusableComponent
+                        {...cardsData[1]}
+                        />
+                    <MakeReusableComponent
+                        {...cardsData[2]}
+                        />
+                
+                    <MakeReusableComponent
+                        {...cardsData[3]}
+                        />
+                    {/* 
+                    // cardsData.map((card) => (
+                    //   <MakeReusableComponent
+                    //     key={card.id}
+                    //     title={card.title}
+                    //     description={card.description}
+                    //     cardPhoto={card.cardPhoto}
+                    //   />
+                    // )) */}
+                </section>
+            - You can use map:
+                🔑 <section id="center">
+                    {
+                        cardsData.map((card) => (
+                        <MakeReusableComponent
+                        // key={index}
+                        key={card.id} => add it in data.js
+                        title={card.title}
+                        description={card.description}
+                        cardPhoto={card.cardPhoto}
+                        />
+                    ))
+                    }
+                    </section>
+                🧠 map in React (Summary)
+                    map loops through each item in an array
+                    Each item in the data becomes a separate component
+                    item represents the current object in each loop
+                    We use item.title, item.description, item.cardPhoto to access data
+                ⚛️ In React
+                    map is used to render lists (like cards)
+                    It converts data into UI components
+                🔑 key
+                    Every item in a map must have a key
+                    React uses it to identify and update elements efficiently
+                    Best practice: use a unique id, otherwise use index (temporary)
+                🎯 Core idea
+                    Data → map → Components → UI
+
+_____________________________________________________________________________________
+
+
+
+
+_____________________________________________________________________________________
+
+_____________________________________________________________________________________
