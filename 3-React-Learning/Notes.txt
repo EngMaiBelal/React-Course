@@ -1,5 +1,5 @@
 1- In src\App.jsx
-    - 1) Add function header and call it in the bottom
+    - 1) Add function footer and call it in the bottom
         - Custom Component => This is a simple functional component (Footer Component)
             - that renders a paragraph with the text "My Footer", while the App component is responsible for rendering the main content of the application.
             - It is used in the App component to display a footer message.
@@ -32,6 +32,7 @@
                 </>
             )
             }
+    
     - 2) Dynamic text:
         const myDynamicText =["Hello", "Welcome to React", "Enjoy coding!"];
         
@@ -62,46 +63,43 @@
             </>
         )
         }
-    - 3) add image in my file by the best way
-        import personPhoto from './assets/m.webp'
-        in App
-        <img src={personPhoto} className="base" width="170" height="179" alt="" />
     
-    - import personPhoto from './assets/m.webp' 
-        import './App.css'
+    - 3) add image in my file by the best way => in App
+        - import personPhoto from './assets/m.webp'            
+        - <img src={personPhoto} className="base" width="170" height="179" alt="" />
+        - The last code
+            import personPhoto from './assets/m.webp' 
+            import './App.css'
 
-        const myDynamicText =["Hello", "Welcome to React", "Enjoy coding!"];
-        function getRandomText() {
-        const randomIndex = Math.floor(Math.random() * myDynamicText.length);
-        return myDynamicText[randomIndex];
-        }
-        function Footer() {
-            const dynamicText = getRandomText();
-        return(
-            <footer>
-                {/* <p>{getRandomText()}</p> */}
-                <p>{dynamicText}</p>
-                <p className="ticks">
-                My Footer Here
-                </p>
-            </footer>
-        );
-        }
-        function App() {
-        return (
-            <>
-            <section id="center">
-                <div className="hero">
-                <img src={personPhoto} className="base" width="170" height="179" alt="" />
-                </div>
-            <Footer />
-            </section>
-            </>
-        )
-        }
-
-        export default App
-_____________________________________________________________________________________
+            const myDynamicText =["Hello", "Welcome to React", "Enjoy coding!"];
+            function getRandomText() {
+            const randomIndex = Math.floor(Math.random() * myDynamicText.length);
+            return myDynamicText[randomIndex];
+            }
+            function Footer() {
+                const dynamicText = getRandomText();
+            return(
+                <footer>
+                    {/* <p>{getRandomText()}</p> */}
+                    <p>{dynamicText}</p>
+                    <p className="ticks">
+                    My Footer Here
+                    </p>
+                </footer>
+            );
+            }
+            function App() {
+            return (
+                <>
+                <section id="center">
+                    <div className="hero">
+                    <img src={personPhoto} className="base" width="170" height="179" alt="" />
+                    </div>
+                <Footer />
+                </section>
+                </>
+            )
+            }
         => Note:
             - <> Fragment in React
             - False in react you must return only element 
@@ -135,30 +133,76 @@ ________________________________________________________________________________
             Need to add props (like key)	❌ Not possible	            ✔ Yes
             Inside a loop (map)	            ❌ Usually not	            ✔ Preferred
             Readability	                    ✔ Good	                     ✔ Good
-_____________________________________________________________________________________
-        => Task
-            - write your name, age and job title and use them in your page.
-                function App() {
+
+    - 4) Write your name, age and job title and use them in your page (Task)
+            function App() {
+            const person = {
+                name: "Omer",
+                age: 22,
+                job: "Frontend Developer"
+            };
+
+            return (
+                <div style={styles.container}>
+                <h1 style={styles.title}>User Profile</h1>
+
+                <div style={styles.card}>
+                    <p><strong>Name:</strong> your name here</p>
+                    <p><strong>Age:</strong> your name here</p>
+                    <p><strong>Job:</strong> your job here</p>
+                </div>
+                </div>
+            );
+            }
+
+            const styles = {
+            container: {
+                fontFamily: "Arial, sans-serif",
+                textAlign: "center",
+                marginTop: "50px",
+                backgroundColor: "#0f172a", // dark background
+                minHeight: "100vh",
+                padding: "20px",
+                color: "#e2e8f0"
+            },
+            title: {
+                color: "#38bdf8", // blue glow
+                marginBottom: "20px",
+                letterSpacing: "1px"
+            },
+            card: {
+                background: "linear-gradient(145deg, #1e293b, #0f172a)",
+                padding: "25px",
+                borderRadius: "15px",
+                width: "280px",
+                margin: "20px auto",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
+                border: "1px solid #334155",
+                transition: "0.3s"
+            }
+            };
+
+        - Solution:-
+            function App() {
                 const person = {
                     name: "Omer",
                     age: 22,
                     job: "Frontend Developer"
                 };
-
                 return (
                     <div style={styles.container}>
                     <h1 style={styles.title}>User Profile</h1>
 
                     <div style={styles.card}>
-                        <p><strong>Name:</strong> your name here</p>
-                        <p><strong>Age:</strong> your name here</p>
-                        <p><strong>Job:</strong> your job here</p>
+                        <p><strong>Name:</strong> {person.name}</p>
+                        <p><strong>Age:</strong> {person.age}</p>
+                        <p><strong>Job:</strong> {person.job}</p>
                     </div>
                     </div>
                 );
-                }
+            }
 
-                const styles = {
+            const styles = {
                 container: {
                     fontFamily: "Arial, sans-serif",
                     textAlign: "center",
@@ -183,68 +227,21 @@ ________________________________________________________________________________
                     border: "1px solid #334155",
                     transition: "0.3s"
                 }
-                };
+            };
 
-            - Solution:-
-                function App() {
-                    const person = {
-                        name: "Omer",
-                        age: 22,
-                        job: "Frontend Developer"
-                    };
-                    return (
-                        <div style={styles.container}>
-                        <h1 style={styles.title}>User Profile</h1>
-
-                        <div style={styles.card}>
-                            <p><strong>Name:</strong> {person.name}</p>
-                            <p><strong>Age:</strong> {person.age}</p>
-                            <p><strong>Job:</strong> {person.job}</p>
-                        </div>
-                        </div>
-                    );
-                }
-
-                const styles = {
-                    container: {
-                        fontFamily: "Arial, sans-serif",
-                        textAlign: "center",
-                        marginTop: "50px",
-                        backgroundColor: "#0f172a", // dark background
-                        minHeight: "100vh",
-                        padding: "20px",
-                        color: "#e2e8f0"
-                    },
-                    title: {
-                        color: "#38bdf8", // blue glow
-                        marginBottom: "20px",
-                        letterSpacing: "1px"
-                    },
-                    card: {
-                        background: "linear-gradient(145deg, #1e293b, #0f172a)",
-                        padding: "25px",
-                        borderRadius: "15px",
-                        width: "280px",
-                        margin: "20px auto",
-                        boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-                        border: "1px solid #334155",
-                        transition: "0.3s"
-                    }
-                };
-
-                export default App;  
-                    👉 lets other files import and use the App component
-                    👉 usually used for the main component in a file
-_____________________________________________________________________________________
-    - 4) How we make reusable components (task)
+            export default App;  
+                👉 lets other files import and use the App component
+                👉 usually used for the main component in a file
+  
+    - 5) How we make reusable components (task)
         
         a) First way
-            import cardPhoto1 from './assets/cards/card1.webp'
-            import cardPhoto2 from './assets/cards/card2.webp'
-            import cardPhoto3 from './assets/cards/card3.webp'
-            import cardPhoto4 from './assets/cards/card4.webp'
+            import cardPhoto1 from './assets/images/cards/card1.webp'
+            import cardPhoto2 from './assets/images/cards/card2.webp'
+            import cardPhoto3 from './assets/images/cards/card3.webp'
+            import cardPhoto4 from './assets/images/cards/card4.webp'
             import './App.css'
-            function MakeReusableComponent(props) {
+            function Cards(props) {
                 return (
                     <div className="card">
                     <h3>{props.title}</h3>
@@ -257,25 +254,25 @@ ________________________________________________________________________________
                 return (
                     <>
                     <section id="center">
-                    <MakeReusableComponent
+                    <Cards
                         title="Card 1"
                         description="This is the first Card."
                         cardPhoto={cardPhoto1}
                     />
 
-                    <MakeReusableComponent
+                    <Cards
                         title="Card 2"
                         description="This is the second Card."
                         cardPhoto={cardPhoto2}
                     />
 
-                    <MakeReusableComponent
+                    <Cards
                         title="Card 3"
                         description="This is the third Card."
                         cardPhoto={cardPhoto3}
                     />
 
-                    <MakeReusableComponent
+                    <Cards
                         title="Card 4"
                         description="This is the fourth Card."
                         cardPhoto={cardPhoto4}
@@ -287,113 +284,167 @@ ________________________________________________________________________________
             export default App
             
         b) In professional way
-            - Make array of object in file data.js           
-                import cardPhoto1 from './assets/cards/card1.webp'
-                import cardPhoto2 from './assets/cards/card2.webp'
-                import cardPhoto3 from './assets/cards/card3.webp'
-                import cardPhoto4 from './assets/cards/card4.webp'
 
-                export const componentsData = [
-                {
-                    title: "Card 1",
-                    description: "This is the first Card.",
-                    cardPhoto: cardPhoto1
-                },
-                {
-                    title: "Card 2",
-                    description: "This is the second Card.",
-                    cardPhoto: cardPhoto2
-                },
-                {
-                    title: "Card 3",
-                    description: "This is the third Card.",
-                    cardPhoto: cardPhoto3
-                },
-                {
-                    title: "Card 4",
-                    description: "This is the fourth Card.",
-                    cardPhoto: cardPhoto4
-                }
-                ]
+            - 1) First Way
+                - Make array of object in file data.js           
+                    import cardPhoto1 from './assets/images/cards/card1.webp'
+                    import cardPhoto2 from './assets/images/cards/card2.webp'
+                    import cardPhoto3 from './assets/images/cards/card3.webp'
+                    import cardPhoto4 from './assets/images/cards/card4.webp'
 
-            - In App.jsx
-                import './App.css'
-                import { componentsData } from './data'
+                    export const componentsData = [
+                    {
+                        title: "Card 1",
+                        description: "This is the first Card.",
+                        cardPhoto: cardPhoto1
+                    },
+                    {
+                        title: "Card 2",
+                        description: "This is the second Card.",
+                        cardPhoto: cardPhoto2
+                    },
+                    {
+                        title: "Card 3",
+                        description: "This is the third Card.",
+                        cardPhoto: cardPhoto3
+                    },
+                    {
+                        title: "Card 4",
+                        description: "This is the fourth Card.",
+                        cardPhoto: cardPhoto4
+                    }
+                    ]
 
-                function MakeReusableComponent(props) {
-                return (
-                    <div className="card">
-                    <h3>{props.title}</h3>
-                    <p>{props.description}</p>
-                    <img src={props.cardPhoto} alt="" />
-                    </div>
-                );
-                }
-                function App() {
-                return (
-                    <>
-                    <section id="center">
-                    <MakeReusableComponent
-                        title={componentsData[0].title}
-                        description={componentsData[0].description}
-                        cardPhoto={componentsData[0].cardPhoto}
-                    />
+                - (Explicit props) => In App.jsx
+                    import './App.css'
+                    import { componentsData } from './data'
 
-                    <MakeReusableComponent
-                        title={componentsData[1].title}
-                        description={componentsData[1].description}
-                        cardPhoto={componentsData[1].cardPhoto}
-                    />
-
-                    <MakeReusableComponent
-                        title={componentsData[2].title}
-                        description={componentsData[2].description}
-                        cardPhoto={componentsData[2].cardPhoto}
-                    />
-
-                    <MakeReusableComponent
-                        title={componentsData[3].title}
-                        description={componentsData[3].description}
-                        cardPhoto={componentsData[3].cardPhoto}
-                    />
-                    </section>
-                    </>
-                )
-                }
-
-                export default App
-
-            - spread operator   
-            <section id="center">
-                    <MakeReusableComponent
-                        {...cardsData[0]}
+                    function Cards(props) {
+                    return (
+                        <div className="card">
+                        <h3>{props.title}</h3>
+                        <p>{props.description}</p>
+                        <img src={props.cardPhoto} alt="" />
+                        </div>
+                    );
+                    }
+                    function App() {
+                    return (
+                        <>
+                        <section id="center">
+                        <Cards
+                            title={componentsData[0].title}
+                            description={componentsData[0].description}
+                            cardPhoto={componentsData[0].cardPhoto}
                         />
-                
-                    <MakeReusableComponent
-                        {...cardsData[1]}
+
+                        <Cards
+                            title={componentsData[1].title}
+                            description={componentsData[1].description}
+                            cardPhoto={componentsData[1].cardPhoto}
                         />
-                    <MakeReusableComponent
-                        {...cardsData[2]}
+
+                        <Cards
+                            title={componentsData[2].title}
+                            description={componentsData[2].description}
+                            cardPhoto={componentsData[2].cardPhoto}
                         />
-                
-                    <MakeReusableComponent
-                        {...cardsData[3]}
+
+                        <Cards
+                            title={componentsData[3].title}
+                            description={componentsData[3].description}
+                            cardPhoto={componentsData[3].cardPhoto}
                         />
-                    {/* 
-                    // cardsData.map((card) => (
-                    //   <MakeReusableComponent
-                    //     key={card.id}
-                    //     title={card.title}
-                    //     description={card.description}
-                    //     cardPhoto={card.cardPhoto}
-                    //   />
-                    // )) */}
-                </section>
-            - You can use map:
+                        </section>
+                        </>
+                    )
+                    }
+
+                    export default App
+
+                - OR by short hand syntax => Grouping Received Props
+                    => Object Destructuring (in function parameters)
+                        function Cards({title,description,cardPhoto}) {
+                            return (
+                                <div className="card">
+                                <h3>{title}</h3>
+                                <p>{description}</p>
+                                <img src={cardPhoto} alt="" />
+                                </div>
+                            );  
+                        }
+                    =>  Rest Parameter =>  group them into a single object via it.
+                       function Cards({...collectProps}) {
+                        return (
+                            <div className="card">
+                            <h3>{collectProps.title}</h3>
+                            <p>{collectProps.description}</p>
+                            <img src={collectProps.cardPhoto} alt="" />
+                            </div>
+                        );  
+                    }
+                    => Notes:-
+                        1- Object Destructuring (in function parameters)
+                            Extracts values directly from an object (like props)
+                            Makes code shorter and cleaner
+                            Improves readability (no need for props.title)
+                            Avoids repetitive props. usage
+                            Common and recommended pattern in React
+                            Instead of props.title → use title directly 
+                                {name of properties, ---, ---} instead of props
+                            Easier to read and maintain
+                        2- Rest Property (in function parameters)
+                            function Cards({ ...concept })
+                            It collects all incoming props into a single object called concept
+                            It “groups all props into one object”
+
+                    =>  And here Use spread operator
+                        function App() {
+                            return (
+                                <>
+                            <section id="center">
+                                <Cards
+                                    {...cardsData[0]}
+                                    />
+                            
+                                <Cards
+                                    {...cardsData[1]}
+                                    />
+                                <Cards
+                                    {...cardsData[2]}
+                                    />
+                            
+                                <Cards
+                                    {...cardsData[3]}
+                                    />
+                            </section>
+                            );
+                        } 
+                    => Notes:-
+                        - Spread Operator in React ({...object})
+                            ... is called the spread operator
+                            It spreads (expands) an object’s properties
+                            Used to pass all object values as props
+                            {...cardComponents} = pass all properties inside the object
+                            Same as writing each prop manually
+                            In React Makes code shorter, cleaner and Very useful with map()
+                        - Example
+                                <Component {...item} />
+                            Same as:
+                                title={item.title}
+                                description={item.description}
+                                cardPhoto={item.cardPhoto}
+                        - Important
+                            Object keys must match prop names
+                            item.title → props.title 
+                        - Core idea
+                            Object → spread (...) → props → component
+            - 2) Second way
+                - You can use map:
                 🔑 <section id="center">
                     {
                         cardsData.map((card) => (
-                        <MakeReusableComponent
+                        <Cards
                         // key={index}
                         key={card.id} => add it in data.js
                         title={card.title}
@@ -403,26 +454,132 @@ ________________________________________________________________________________
                     ))
                     }
                     </section>
-                🧠 map in React (Summary)
+                - map in React (Summary)
                     map loops through each item in an array
                     Each item in the data becomes a separate component
                     item represents the current object in each loop
                     We use item.title, item.description, item.cardPhoto to access data
-                ⚛️ In React
+                - In React
                     map is used to render lists (like cards)
                     It converts data into UI components
-                🔑 key
+                - key
                     Every item in a map must have a key
                     React uses it to identify and update elements efficiently
                     Best practice: use a unique id, otherwise use index (temporary)
-                🎯 Core idea
+                - Core idea
                     Data → map → Components → UI
 
-_____________________________________________________________________________________
+
+    - 6) Default Prop Values
+            - Sometimes, you'll build components that may receive an optional prop. For example, a custom Button component may receive a type prop.
+            - So the Button component should be usable either with a type being set:
+            - EX:-
+            <Button type="submit" caption="My Button" />
+            Or without it:
+
+            <Button caption="My Button" />
+            To make this component work, you might want to set a default value for the type prop - in case it's not passed.
+
+            This can easily be achieved since JavaScript supports default values when using object destructuring:
+
+            export default function Button({ caption, type = "submit" }) { 
+            // caption has no default value, type has a default value of "submit"
+            }
+    - 7) Render a List Using map()
+            Create a React component called TaskItem that displays a title and a description.
+            Requirements:
+                Create your own array of objects (at least 2 items)
+                Each object must contain: id, title, and description
+                Use map() to render all items
+                Each item should be displayed inside an <li>
+                Add a unique key for each item
+            Important:
+                The first object must have:
+                Title: "Learn JavaScript"
+                Description: "Understand basics like variables and functions"
+                These values must appear on the page
+            - Solution
+                function TaskItem({ title, description }) {
+                      return (    
+                        <li>      
+                      <h2>{title}</h2>      
+                      <p>{description}</p>    
+                      </li>  
+                    );
+                }
+                const tasks = [  
+                    {    
+                        id: 1,    
+                        title: "Learn JavaScript",    
+                        description: "Understand basics like variables and functions"  
+                    },  {    
+                        id: 2,    
+                        title: "Learn React",    
+                        description: "Build components and manage state"  
+                    }
+                ];
+                function App() {  
+                    return (    
+                    <div>      
+                        <h1>My Tasks</h1>      
+                            <ul>        
+                                {tasks.map((task) => (
+                                    <TaskItem
+                                    key={task.id}
+                                    title={task.title}
+                                    description={task.description}
+                                    />        
+                                ))}      
+                            </ul>    
+                        </div>  
+                                            
+                    );
+                }
+                export default App; 
+
+    - 8) Components in Seperate Files 
+        - src\components\Footer.jsx
+            import './Footer.css'
+            import FooterImg from '../assets/images/footer-img.jpg'
+                // Some of code
+            export default function Footer() {
+                // Some of Code
+            }
+        - src\App.jsx
+                import './App.css'
+                import { cardsData } from './data'
+                import Cards from './components/Cards'
+                import Footer from './components/Footer'
+                function App() {
+                    return (
+                        <>
+                            {cardsData.map((card) => (
+                                <Cards
+                                    key={card.id}
+                                    title={card.title}
+                                    description={card.description}
+                                cardPhoto={card.cardPhoto}
+                                />
+                            ))}
+                        <Footer/>
+
+                        </section>
+                        </>
+                    )
+                }
+                export default App
+            - src\components\Cards.css
+                // styling Cards
+            - src\components\Footer.css
+                // styling Footer
+
+    - 8) Interactive Tabs 
 
 
 
 
-_____________________________________________________________________________________
 
-_____________________________________________________________________________________
+
+
+
+

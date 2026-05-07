@@ -1,44 +1,28 @@
 import './App.css'
 import { cardsData } from './data'
+import Cards from './components/Cards'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import Tabs from './components/Tabs'
 
-function MakeReusableComponent(props) {
-  return (
-    <div className="card">
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
-      <img src={props.cardPhoto} alt="" />
-    </div>
-  );
-}
 function App() {
   return (
     <>
+      <Header/>
       <section id="center">
-
-          <MakeReusableComponent
-              {...cardsData[0]}
+        {
+          cardsData.map((card) => (
+            <Cards
+              key={card.id}
+              title={card.title}
+              description={card.description}
+              cardPhoto={card.cardPhoto}
             />
-    
-          <MakeReusableComponent
-              {...cardsData[1]}
-            />
-          <MakeReusableComponent
-              {...cardsData[2]}
-            />
-       
-          <MakeReusableComponent
-              {...cardsData[3]}
-            />
-          {/* 
-          // cardsData.map((card) => (
-          //   <MakeReusableComponent
-          //     key={card.id}
-          //     title={card.title}
-          //     description={card.description}
-          //     cardPhoto={card.cardPhoto}
-          //   />
-          // )) */}
-    </section>
+          ))
+        }
+        <Tabs />
+        {/* <Footer /> */}
+      </section>
     </>
   )
 }
