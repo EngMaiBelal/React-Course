@@ -28,4 +28,30 @@ export const cardsData = [
     description: " Shields the skin from environmental damage and helps maintain its health.",
     cardPhoto: cardPhoto4
   }
-]
+];
+
+
+export const tabsData = {
+  cleanse:{
+    title: "Cleanse",
+    description: "Gently removes dirt, oil, and impurities to keep the skin fresh and clean.",
+    // code:`function welcome(){
+    //     return <h1>Hello World!</h1>;
+    // }`
+  },
+
+  tone:{
+    title: "Tone",
+    description: "Balances the skin's pH levels and prepares it for better absorption of subsequent products.",
+  },
+
+  moisturize:{
+    title: "Moisturize",
+    description: "Hydrates and nourishes the skin to maintain its softness and elasticity.",
+  },
+
+  protect:{
+    title: "Protect",
+    description: " Shields the skin from environmental damage and helps maintain its health.",
+  }
+}

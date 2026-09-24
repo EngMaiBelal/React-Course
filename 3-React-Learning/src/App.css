@@ -5,10 +5,22 @@ body{
 
 #center {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 25px;
   place-content: center;
   place-items: center;
   flex-grow: 1;
   flex-wrap: wrap;
 }
+.section2{
+  padding: 2rem;
+  height: 50vh;
+  /* width: 80%; */
+  /* margin: auto; */
+  /* background-color: aliceblue; */
+  color: aliceblue;
+}
+/* .section2 h3, .section2 p{
+
+  text-align: left;
+} */

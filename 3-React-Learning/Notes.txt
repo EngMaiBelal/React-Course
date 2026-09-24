@@ -469,7 +469,6 @@
                 - Core idea
                     Data → map → Components → UI
 
-
     - 6) Default Prop Values
             - Sometimes, you'll build components that may receive an optional prop. For example, a custom Button component may receive a type prop.
             - So the Button component should be usable either with a type being set:
@@ -485,6 +484,7 @@
             export default function Button({ caption, type = "submit" }) { 
             // caption has no default value, type has a default value of "submit"
             }
+    
     - 7) Render a List Using map()
             Create a React component called TaskItem that displays a title and a description.
             Requirements:
@@ -572,14 +572,430 @@
                 // styling Cards
             - src\components\Footer.css
                 // styling Footer
+  
+    - 9) Interactive Tabs
+        1- Composition Component Concept
+            - Defination:
+                    - Component Composition means reusing the same component in different ways.
+                    - We use children to pass different content to a component.
+                    - The same component can be used for multiple purposes.
+                    - This makes the code reusable and flexible.
+                    - It also makes the code cleaner and easier to maintain.
+                    - In the example, TabButton is reused for different tabs.
 
-    - 8) Interactive Tabs 
+            - By Children Props
+                - App.jsx
+                        <TabButton>Cleanse</TabButton>
+                        <TabButton>tone</TabButton>
+                        <TabButton>moisturize</TabButton>
+                        <TabButton>Protect</TabButton>
+
+                - TabButton.jsx
+                    import './TabButton.css'
+                    // export default function TabButton(props.children) 
+                    export default function TabButton({children}) {
+                        return (
+                            <button className="tabs">{children}</button>
+                        );
+                    }
+                
+
+            - OR By Attribute props
+                    - App.jsx
+                        <TabButton label="Cleanse"></TabButton>
+                        <TabButton label="tone"></TabButton>
+                        <TabButton label="moisturize"></TabButton>
+                        <TabButton label="Protect"></TabButton>
+                    - TabButton.jsx
+                        export default function TabButton({label}) {
+                        return (
+                            <button className="tabs" > 
+                                {label}
+                            </button>
+                        );
+                        }
+            - Notes:
+                Children:
+                    Props are used to pass specific data to a component.
+                    Children are used to pass JSX or content inside the component tags.
+                    Props are written as attributes in the opening tag.
+                    Children are written between the opening and closing tags.
+                    Props usually pass values like text, numbers, or functions.
+                    Children can pass full HTML or JSX elements.
+                    Props make components customizable.
+                    Children make components more flexible and reusable.
+                Attribute:
+                    Custom attributes are user-defined props passed to a component.
+                    They allow components to receive dynamic data.
+                    Custom attributes are written inside the component tag.
+                    They help make components reusable and configurable.
+                    A component can receive multiple custom attributes.
+                    Common examples are title, name, price, or onClick.
+                    Custom attributes are accessed using props inside the component.
+    
+    - 10) Reaction to Events
+            - How do you can make event?
+                - In TabButtonComponent
+                    import './TabButton.css'
+                    export default function TabButton({children}) {
+                        function handleButton() {
+                            console.log("Button clicked");
+                        }
+                        return (
+                            <button onClick={handleButton} className="tabs">{children}</button>
+                        );
+                    }
+                - App.jsx
+                    function App() {
+                        return (
+                            <>
+                            <Header/>
+                                <section id="center">
+                                    <menu>
+                                        <TabButton>Cleanse</TabButton>
+                                        <TabButton>Tone</TabButton>
+                                        <TabButton>Moisturize</TabButton>
+                                        <TabButton>Protect</TabButton>
+                                    </menu>
+                                </section>
+                            </>
+                        )
+                    }
+            
+            - Passing function as a value
+                - App.jsx
+                    function App() {
+                        function handleTabSelect() {
+                            console.log('Tab selected');
+                        }
+                        return (
+                            <>
+                            <section id="center">
+                                <menu>
+                                    <TabButton onSelectAction={handleTabSelect}>Cleanse</TabButton>
+                                    <TabButton onSelectAction={handleTabSelect}>Tone</TabButton>
+                                    <TabButton onSelectAction={handleTabSelect}>Moisturize</TabButton>
+                                    <TabButton onSelectAction={handleTabSelect}>Protect</TabButton>
+                                </menu>
+                            </section>
+                            </>
+                        )
+                    }
+                - TabButton.jsx
+                    export default function TabButton({children, onSelectAction}) {
+                        return (
+                            <button onClick={onSelectAction} className="tabs">
+                            {children}
+                            </button>
+                        );
+                    }
+
+        - Task:
+            - I need to change the data in object when i click the login button 
+                - Form.jsx
+                    import './Form.css';
+                    export default function Form() {
+                        const data = {
+                            email: '',
+                            password: '',
+                            isLoggedIn: false
+                        };
+                        return (
+                            <div className="form-container">
+                                <form className="form">
+                                    <h2>Login</h2>
+                                    <input type="email" placeholder="Enter your email" />
+                                    
+                                    <input type="password" placeholder="Enter your password" />
+
+                                    <button className="tabs">Login</button>
+                                </form>
+                            </div>
+                        );
+                    }
+                - Form.css
+                    .form-container {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .form {
+                        background: #e2e8f0;
+                        padding: 30px;
+                        border-radius: 10px;
+                        width: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+
+                    .form h2 {
+                        text-align: center;
+                        color: #1e293b;
+                    }
+
+                    .form input {
+                        padding: 10px;
+                        border: none;
+                        border-radius: 6px;
+                        outline: none;
+                    }
+
+                    .tabs {
+                        padding: 10px 15px;
+                        border: none;
+                        cursor: pointer;
+                        color: #1e293b;
+                        background: white;
+                        border-radius: 6px;
+                        transition: 0.3s;
+                    }
+
+                    .tabs:hover {
+                        background: black;
+                        color: white;
+                    }
+                - App.jsx
+                    import Form from './components/Form'
+
+                    function App() {
+                        return (
+                            <>
+                            <section id="center">
+                                <Form />
+                            </section>
+                            </>
+                        )
+                    }
+
+            - Solution: 
+                import './Form.css';
+
+                export default function Form() {
+                    const data = {
+                        email: '',
+                        password: '',
+                        isLoggedIn: false
+                    };
+                    function changeData (event) {
+                        event.preventDefault();
+                        data.email='user@example.com';
+                        data.password='password123';
+                        data.isLoggedIn = true;
+                        console.log(data);
+                    }
+                    return (
+                        <div className="form-container">
+                            <form className="form">
+                                <h2>Login</h2>
+                                <input type="email" placeholder="Enter your email" />
+                                
+                                <input type="password" placeholder="Enter your password" />
+
+                                <button className="tabs" onClick={changeData}>Login</button>
+                            </form>
+                        </div>
+                    );
+                }
+    
+    - 11) dynamic content
+        A) How to send Argument to myFun:-
+                - App.jsx
+                    function App() {
+                        function handleTabSelect(content) {
+                            console.log(content);
+                        }
+
+                        return (
+                            <>
+                                <menu>
+                                <TabButton onSelectAction={handleTabSelect} content="cleanse">Cleanse</TabButton>
+                                <TabButton onSelectAction={handleTabSelect} content="tone">Tone</TabButton>
+                                <TabButton onSelectAction={handleTabSelect} content="moisturize">Moisturize</TabButton>
+                                <TabButton onSelectAction={handleTabSelect} content="protect">Protect</TabButton>
+                                </menu>
+                            </>
+                        )
+                    }
+                - TabButtonComponent
+                    export default function TabButton({children, onSelectAction, content}) {
+                        return (
+                            <button onClick={() => onSelectAction(content)} className="tabs">{children}</button>
+                        );
+                    }
+            OR
+                - App.jsx
+
+                    function handleTabSelect(content) {
+                        console.log(content);
+                    }
+                    <menu>
+                        <TabButton onSelectAction={()=> handleTabSelect("Cleanse")}>Cleanse</TabButton>
+                        <TabButton onSelectAction={()=> handleTabSelect("Tone")}>Tone</TabButton>
+                        <TabButton onSelectAction={()=> handleTabSelect("Moisturize")}>Moisturize</TabButton>
+                        <TabButton onSelectAction={()=> handleTabSelect("Protect")}>Protect</TabButton>
+                    </menu>
+                - TabButtonComponent
+                export default function TabButton({children, onSelectAction}) {
+                return (
+                    <button onClick={onSelectAction} className="tabs">{children}</button>
+                    );
+                }
+        B) Manage State:
+            import {useState} from 'react';
+
+            function App() {
+            const [selectedContent, setNewContent] = useState('please click tab')
+            function handleTabSelect(content) {
+                setNewContent(content)
+                console.log(selectedContent);
+            }
+            return (
+                <>
+                <section className="section2">
+                    <menu>
+                        same code
+                    </menu>
+                    {selectedContent}
+                </section>
+                </>
+            )
+            }
+
+        c) Manage content
+            - data.js
+                export const tabsData = {
+                    cleanse:{
+                        title: "Cleanse",
+                        description: "Gently removes dirt, oil, and impurities to keep the skin fresh and clean.",
+                        // code:`function welcome(){
+                        //     return <h1>Hello World!</h1>;
+                        // }`
+                    },
+
+                    tone:{
+                        title: "Tone",
+                        description: "Balances the skin's pH levels and prepares it for better absorption of subsequent products.",
+                    },
+
+                    moisturize:{
+                        title: "Moisturize",
+                        description: "tones and nourishes the skin to maintain its softness and elasticity.",
+                    },
+
+                    protect:{
+                        title: "Protect",
+                        description: " Shields the skin from environmental damage and helps maintain its health.",
+                    }
+                }
+            - App.JSX
+                const [selectedContent, setNewContent] = useState('cleanse')
+
+                <section className="section2">
+                    <menu>
+                        <TabButton onSelectAction={()=> handleTabSelect("cleanse")}>Cleanse</TabButton>
+                        <TabButton onSelectAction={()=> handleTabSelect("tone")}>Tone</TabButton>
+                        <TabButton onSelectAction={()=> handleTabSelect("moisturize")}>Moisturize</TabButton>
+                        <TabButton onSelectAction={()=> handleTabSelect("protect")}>Protect</TabButton>
+                    </menu>
+            
+                    <div id="tabContent">
+                        <h3>{tabsData[selectedContent].title}</h3>
+                        <p>{tabsData[selectedContent].description}</p>
+                    </div>
+                </section>
+        d) Conditional statment
+            - App.jsx
+                const [selectedContent, setNewContent] = useState('')
+                function handleTabSelect(content) {
+                    // same code
+                }
+                return 
+                    <menu>
+                    // same code
+                    </menu>
+
+                    <div id="tabContent">
+                    {(!selectedContent) ? (
+                        <p>Please Select Topic</p>
+                    ):(
+                        <div>
+                        <h3>{tabsData[selectedContent].title}</h3>
+                        <p>{tabsData[selectedContent].description}</p>
+                        </div>
+                    )}
+                    </div>
+                    </section>
+        e) Task: Show / Hide a Message
+            - You are given a React component with two buttons.
+            - Your task is to make the buttons work using useState():
+            - When the "Show Message" button is clicked, display the <div id="message"> and all of its content.
+            - When the "Close" button inside the message is clicked, hide the message again and remove it from the DOM.
+            - The message should not be visible when the page first loads.
+            - You can use a ternary expression (? :) or && for conditional rendering.
+            - Use this code: 
+                import React from 'react';
+
+                // Don't change the Component name "App"
+                export default function App() {
+                    // Add your state here
+
+                    return (
+                        <div>
+                            {/* Show the message when the first button is clicked */}
+                            {/* The message should contain the Close button */}
+
+                            <button>Show Message</button>
+                        </div>
+                    );
+                }
 
 
+            - Solution
+                import React from 'react';
 
+                export default function App() {
+                    const [showMessage, setShowMessage] = React.useState(false);
 
+                    function showMessageHandler() {
+                        setShowMessage(true);
+                    }
 
+                    function hideMessageHandler() {
+                        setShowMessage(false);
+                    }
 
+                    return (
+                        <div>
+                            {showMessage ? (
+                                <div id="message">
+                                    <h2>Hello!</h2>
+                                    <p>Welcome to our React application.</p>
+                                    <button onClick={hideMessageHandler}>Close</button>
+                                </div>
+                            ) : null}
 
+                            <button onClick={showMessageHandler}>
+                                Show Message
+                            </button>
+                        </div>
+                    );
+                }
+
+    - 12) Dynamic Styling Tab
+            - TabButton.JSX
+                export default function TabButton({children, onSelectAction, isSelected}) {
+                    return (
+                        <button onClick={onSelectAction} className={ isSelected ? "tabs active" : "tabs"}>{children}</button>
+                    );
+                }
+            - App.jsx
+                <menu>
+                    <TabButton isSelected={selectedContent==="cleanse"} onSelectAction={() => handleTabSelect("cleanse")}>Cleanse</TabButton>
+                    <TabButton isSelected={selectedContent==="tone"} onSelectAction={() => handleTabSelect("tone")}>Tone</TabButton>
+                    <TabButton isSelected={selectedContent==="moisturize"} onSelectAction={() => handleTabSelect("moisturize")}>Moisturize</TabButton>
+                    <TabButton isSelected={selectedContent==="protect"} onSelectAction={() => handleTabSelect("protect")}>Protect</TabButton>
+                </menu>
 
 

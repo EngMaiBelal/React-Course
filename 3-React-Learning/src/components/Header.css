@@ -6,3 +6,7 @@
   font-family: cursive;
   color: white;
 }
+
+#header p{
+  padding: 1rem
+}

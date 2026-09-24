@@ -1,0 +1,21 @@
+
+.tabs {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    #77977B 0%,
+    #5F7F66 50%,
+    #3F5A45 100%
+  ) !important;
+  color: white !important;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.tabs:hover {
+  background: black;
+  color: white
+}
