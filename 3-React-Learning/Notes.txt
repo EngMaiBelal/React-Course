@@ -894,6 +894,7 @@ A) React Essentials:-
                 const [selectedContent, setNewContent] = useState('cleanse')
 
                 <section className="section2">
+                <h2>Skincare Categories</h2>
                     <menu>
                         <TabButton onSelectAction={()=> handleTabSelect("cleanse")}>Cleanse</TabButton>
                         <TabButton onSelectAction={()=> handleTabSelect("tone")}>Tone</TabButton>
@@ -1385,6 +1386,7 @@ B) JSX
                     }
                     return (
                         <section className="section2" id="details">
+                        <h2>Skincare Categories</h2>
                         <menu>
                         <TabButton isSelected={selectedContent==="cleanse"} onSelectAction={() => handleTabSelect("cleanse")}>Cleanse</TabButton>
                         <TabButton isSelected={selectedContent==="tone"} onSelectAction={() => handleTabSelect("tone")}>Tone</TabButton>
@@ -1427,3 +1429,174 @@ B) JSX
                 </>
             )
             }
+    - 3) Problem Props are not forward to inner element
+    - 4) Forwarding Props To Wrapped elements
+        Concept:-
+            - create src > component > Section.jsx
+                export default function Section({title, children}){
+                    return (
+                        <section>
+                            <h2>{title}</h2>
+                            {children}
+                        </section>
+                    );
+                }
+            - use it in TapDetails
+                <Section title="Skincare Categories" className="section2" id="details">
+                    // content ....
+                </Section>
+            - Problem => style doesnot show correctly
+            - Solution => 
+                export default function Section({title, children, ...props}){
+                    return (
+                        <section {...props}>
+                            <h2>{title}</h2>
+                            {children}
+                        </section>
+                    );
+                }
+            - OR:
+                export default function Section({title, children, className, id}){
+                    return (
+                        <section className={className} id={id}>
+                            <h2>{title}</h2>
+                            {children}
+                        </section>
+                    );
+                }
+        Example:-
+            Forwarding Props
+            Your task is to work on the Input component such that it either returns a <textarea> element or an <input> element, depending on whether a richText prop set on Input is true or false.
+
+            I.e., if used like this:
+
+            <Input richText />
+            the Input component should render a <textarea>. Otherwise, it should render an <input>.
+
+            In addition, the Input component should forward all other props directly to the returned <textarea> or <input> elements.
+
+            I.e., it should be usable like this:
+            <Input type="text" placeholder="Your name" />
+            - Input Component:
+                export default function Input({ richText,...props }) {
+                    return (
+                        richText ? <textarea{...props}></textarea> : <input {...props} />
+                    );
+                }
+            - App Component:
+            import Input from './Input';
+
+            function App() {
+            return (
+                <div id="content">
+                <Input type="text" placeholder="Your name" />
+                <Input richText={true} placeholder="Your message" />
+                </div>
+            );
+            }
+
+            export default App;
+        Task 1:-
+            - Building a Flexible Button Component:-
+                Work on the `Button` component such that it renders either a `<button>` or an `<a>` element, depending on whether a `link` prop is provided.
+            - Requirements
+                1. If a `link` prop is provided, the component should render an `<a>` element.
+                2. Otherwise, it should render a `<button>` element.
+                3. The component must forward all other received props to the returned element.
+            - Example Usage
+                **Button.jsx**
+                    export default function Button() {
+                    // return an <a> element if a link prop is provided
+                    // return a <button> element otherwise
+                    // forward all received props to the returned elements
+                    }
+                **App.jsx**
+                    import Button from './Button';
+                    function App() {
+                    return (
+                        <div>
+                        <Button type="submit" disabled>
+                            Submit Form
+                        </Button>
+
+                        <Button link="https://react.dev" target="_blank">
+                            Learn React
+                        </Button>
+                        </div>
+                    );
+                    }
+                    export default App;
+            - Expected Behavior
+                - The first component should render a `<button>` with `type="submit"` and `disabled`.
+                - The second component should render an `<a>` with `href="https://react.dev"` and `target="_blank"`.
+            - Bonus Challenge
+                Can you solve the task using the Rest and Spread Operators without manually specifying every prop?
+            - Solution:-
+                - Button.jsx
+                    export default function Button({ link, ...props }) {
+                        return (
+                            link
+                                ? <a href={link} {...props} />
+                                : <button {...props} />
+                        );
+                    }
+                - App.jsx
+                    import Button from './Button';
+                    function App() {
+                        return (
+                            <div>
+                                <Button type="submit" disabled>
+                                    Submit Form
+                                </Button>
+
+                                <Button link="https://react.dev" target="_blank">
+                                    Learn React
+                                </Button>
+                            </div>
+                        );
+                    }
+                    export default App;
+        Task 2:-
+            - Task: Building a Dynamic Image Component:-
+                Work on the `ProductImage` component such that it displays one of two images depending on whether an `isPrimary` prop is set to `true` or `false`.
+            - Requirements:
+                1. If `isPrimary` is `true`, display the primary product image.
+                2. If `isPrimary` is `false`, display the secondary product image.
+                3. The component must forward all other received props to the rendered `<img>` element.
+                ### ProductImage.jsx
+                    export default function ProductImage() {
+                        // display the primary image if isPrimary is true
+                        // display the secondary image otherwise
+                        // forward all other received props to the <img> element
+                    }
+                ### App.jsx
+                import ProductImage from './ProductImage';
+
+                function App() {
+                    return (
+                        <div>
+                            <ProductImage
+                                isPrimary
+                                alt="Primary Product"
+                                width="300"
+                            />
+
+                            <ProductImage
+                                isPrimary={false}
+                                alt="Secondary Product"
+                                width="300"
+                            />
+                        </div>
+                    );
+                }
+
+                export default App;
+            - Expected Behavior
+                - The first component displays `product-front.jpg`.
+                - The second component displays `product-back.jpg`.
+                - Both images should receive the remaining props such as `alt` and `width`.
+            - Bonus Challenge
+                Can you solve the task using the Rest and Spread Operators?
+            - Solution:-
+                
+    - 5) 

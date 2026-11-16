@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { tabsData } from '../data';
 
 import TabButton from './TabButton';
+import Section from './Section';
 
 export default function TabDetails(){
     const [selectedContent, setNewContent] = useState('')
@@ -10,7 +11,10 @@ export default function TabDetails(){
         // console.log(selectedContent);
     }
     return (
-        <section className="section2" id="details">
+        
+        <Section title="Skincare Categories" className="section2" id="details">
+
+       
         <menu>
           <TabButton isSelected={selectedContent==="cleanse"} onSelectAction={() => handleTabSelect("cleanse")}>Cleanse</TabButton>
           <TabButton isSelected={selectedContent==="tone"} onSelectAction={() => handleTabSelect("tone")}>Tone</TabButton>
@@ -29,6 +33,6 @@ export default function TabDetails(){
           )}
 
         </div>
-      </section>
+       </Section>
     )
 }

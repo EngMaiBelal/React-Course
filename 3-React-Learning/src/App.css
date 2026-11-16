@@ -20,4 +20,9 @@ body{
   /* background-color: aliceblue; */
   color: aliceblue;
 }
+.section2 h2 {
+   font-size: 2rem;
+   color: white;
+  margin-bottom: 0.8rem;
+}
 
