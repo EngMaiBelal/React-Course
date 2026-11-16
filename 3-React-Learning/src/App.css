@@ -3,7 +3,7 @@ body{
   font-family:cursive
 }
 
-#center {
+#cardContent {
   display: flex;
   justify-content: space-between;
   gap: 25px;
@@ -14,13 +14,10 @@ body{
 }
 .section2{
   padding: 2rem;
-  height: 50vh;
+  height: 30vh;
   /* width: 80%; */
   /* margin: auto; */
   /* background-color: aliceblue; */
   color: aliceblue;
 }
-/* .section2 h3, .section2 p{
 
-  text-align: left;
-} */

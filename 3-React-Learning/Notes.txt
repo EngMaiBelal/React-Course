@@ -1,4 +1,5 @@
-1- In src\App.jsx
+A) React Essentials:-
+                    => In src\App.jsx <=
     - 1) Add function footer and call it in the bottom
         - Custom Component => This is a simple functional component (Footer Component)
             - that renders a paragraph with the text "My Footer", while the App component is responsible for rendering the main content of the application.
@@ -91,7 +92,7 @@
             function App() {
             return (
                 <>
-                <section id="center">
+                <section id="cardContent">
                     <div className="hero">
                     <img src={personPhoto} className="base" width="170" height="179" alt="" />
                     </div>
@@ -253,7 +254,7 @@
             function App() {
                 return (
                     <>
-                    <section id="center">
+                    <section id="cardContent">
                     <Cards
                         title="Card 1"
                         description="This is the first Card."
@@ -331,7 +332,7 @@
                     function App() {
                     return (
                         <>
-                        <section id="center">
+                        <section id="cardContent">
                         <Cards
                             title={componentsData[0].title}
                             description={componentsData[0].description}
@@ -402,7 +403,7 @@
                         function App() {
                             return (
                                 <>
-                            <section id="center">
+                            <section id="cardContent">
                                 <Cards
                                     {...cardsData[0]}
                                     />
@@ -441,7 +442,7 @@
                             Object → spread (...) → props → component
             - 2) Second way
                 - You can use map:
-                🔑 <section id="center">
+                🔑 <section id="cardContent">
                     {
                         cardsData.map((card) => (
                         <Cards
@@ -650,7 +651,7 @@
                         return (
                             <>
                             <Header/>
-                                <section id="center">
+                                <section id="cardContent">
                                     <menu>
                                         <TabButton>Cleanse</TabButton>
                                         <TabButton>Tone</TabButton>
@@ -670,7 +671,7 @@
                         }
                         return (
                             <>
-                            <section id="center">
+                            <section id="cardContent">
                                 <menu>
                                     <TabButton onSelectAction={handleTabSelect}>Cleanse</TabButton>
                                     <TabButton onSelectAction={handleTabSelect}>Tone</TabButton>
@@ -762,7 +763,7 @@
                     function App() {
                         return (
                             <>
-                            <section id="center">
+                            <section id="cardContent">
                                 <Form />
                             </section>
                             </>
@@ -998,4 +999,431 @@
                     <TabButton isSelected={selectedContent==="protect"} onSelectAction={() => handleTabSelect("protect")}>Protect</TabButton>
                 </menu>
 
+    - 13) Outputting list data dynamically
+         {
+          cardsData.map((card) => (
+            <Cards key={card.title} {...card}/>
+          ))
+        }
 
+
+        instead of:-
+            <Cards
+                title={componentsData[0].title}
+                description={componentsData[0].description}
+                cardPhoto={componentsData[0].cardPhoto}
+            />
+        or:-
+            <Cards {...componentsData[0]}/>
+            <Cards {...componentsData[1]}/>
+            <Cards {...componentsData[2]}/>
+            <Cards {...componentsData[3]}/>
+        - Task1:- 
+            ### React Exercise: Todo List
+                You are given a `Todo` component and an array containing todo items.
+                Your task is to:
+                    1. Make the `Todo` component display its content inside an `<li>` element.
+                    2. Use `map()` inside the `App` component to display all todo items.
+                    3. Pass each todo item to the `Todo` component using `children`.
+                    4. Add a `key` to each rendered `Todo`.
+                    5. Make sure the `App` component returns the rendered list.
+                    6. Do not change the component name `App`.
+
+            #### `Todo.jsx`
+                import React from 'react';
+
+                export default function Todo({ children }) {
+                    // Your code here
+                }
+            #### `App.jsx`
+                import React from 'react';
+                import Todo from './Todo';
+
+                // Don't remove the export keyword here!
+                export const DUMMY_TODOS = [
+                    'Learn React',
+                    'Practice React',
+                    'Build a project!',
+                ];
+
+                // Don't change the component name "App"
+                export default function App() {
+                    // Your code here
+                }
+            ### Expected Result
+                The page should display:
+                * Learn React
+                * Practice React
+                * Build a project!
+            
+            #### Answer:
+                #### `Todo.jsx`
+                    import React from 'react';
+
+                    export default function Todo({ children }) {
+                        return <li>{children}</li>;
+                    }
+                #### `App.jsx`
+                    import React from 'react';
+                    import Todo from './Todo';
+
+                    // Don't remove the export keyword here!
+                    export const DUMMY_TODOS = [
+                        'Learn React',
+                        'Practice React',
+                        'Build a project!',
+                    ];
+
+                    // Don't change the component name "App"
+                    export default function App() {
+                        return (
+                            <ul>
+                                {DUMMY_TODOS.map((item, index) => (
+                                    <Todo key={index}>{item}</Todo>
+                                ))}
+                            </ul>
+                        );
+                    }
+
+
+        - Task2:-
+            ### React Exercise: Displaying Courses
+                You are given a `Course` component and an array containing course names.
+                Your task is to:
+                    1. Create the `Course` component so that it receives the course name through `children` and displays it inside an `<li>` element.
+                    2. Use `map()` inside the `App` component to display all courses.
+                    3. Add a unique `key` to each rendered `Course`.
+                    4. Do not change the component name `App`.
+                    5. Make sure `App` returns the rendered list.
+
+            #### `Course.jsx`
+                    import React from 'react';
+
+                    export default function Course({ children }) {
+                        // Your code here
+                    }
+
+
+            #### `App.jsx`
+                import React from 'react';
+                import Course from './Course';
+
+                // Don't remove the export keyword here!
+                export const COURSES = [
+                    'React',
+                    'JavaScript',
+                    'Laravel',
+                ];
+
+                // Don't change the component name "App"
+                export default function App() {
+                    // Your code here
+                }
+
+            ### Expected Result
+                The page should display:
+                * React
+                * JavaScript
+                * Laravel
+                
+            ### Answer
+                ### `Course.jsx`
+                    import React from 'react';
+
+                    export default function Course({ children }) {
+                        return <li>{children}</li>;
+                    }
+                ### `App.jsx`
+                    import React from 'react';
+                    import Course from './Course';
+
+                    // Don't remove the export keyword here!
+                    export const COURSES = [
+                        'React',
+                        'JavaScript',
+                        'Laravel',
+                    ];
+
+                    // Don't change the component name "App"
+                    export default function App() {
+                        return (
+                            <ul>
+                                {COURSES.map((course, index) => (
+                                    <Course key={index}>{course}</Course>
+                                ))}
+                            </ul>
+                        );
+                    }
+
+    - 14) Summary
+        React Essentials — English
+            1. Components
+                React is built around Components.
+                A Component is a function.
+                Its name must start with an uppercase letter.
+                It must return something React can render, usually JSX.
+                Components can be used like custom HTML elements inside JSX.
+            2. Props
+                Props are used to pass data to Components.
+                Props are received as the first parameter of the Component function.
+                We can use object destructuring to access props easily.
+                We can also pass an entire object using the spread operator.
+            3. Dynamic Content
+                We use {} inside JSX to display dynamic content.
+                They can be used between tags or inside attributes.
+            4. children
+                children is a special prop provided by React.
+                It contains the content placed between the opening and closing tags of a Component.
+                Example:
+                    <Todo>Learn React</Todo>
+                    Learn React is received through children.
+
+            5. Events
+                React can listen to events using event props such as onClick.
+                We can also create custom props such as onSelect.
+                Custom event props can be used to pass functions between Components.
+                6. useState
+                useState is used to manage changing data.
+                When the state changes, React executes the Component again.
+                React reevaluates the JSX.
+                It compares the old result with the new result.
+                Then it updates the UI where changes are needed.
+            7. Conditional Rendering
+                We can display different content depending on a condition using:
+                    - if statements
+                    - Ternary operator ? :
+                    - Logical AND &&
+            8. Rendering Lists
+                We use map() to convert an array of data into JSX elements.
+                todos.map(todo => <Todo>{todo}</Todo>)
+                Each item should have a unique key so React can efficiently track and update the list.
+                Key Idea
+
+            Components → JSX → Props → children → Events → State → Conditional Rendering → Lists & Keys
+
+        أساسيات React — عربي
+            1. الـ Components
+                React بيعتمد بشكل أساسي على Components.
+                الـ Component عبارة عن function.
+                اسمها لازم يبدأ بحرف Capital.
+                لازم ترجع حاجة React يقدر يعرضها، وغالبًا بتكون JSX.
+                نقدر نستخدم الـ Components داخل JSX كأنها HTML elements مخصصة.
+            2. الـ Props
+                الـ Props بنستخدمها عشان نمرر بيانات للـ Components.
+                الـ Props بتوصل للـ Component كأول parameter في الـ function.
+                نقدر نستخدم object destructuring للوصول للـ props بسهولة.
+                ونقدر كمان نمرر object كامل باستخدام spread operator.
+            3. الـ Dynamic Content
+                بنستخدم {} داخل JSX لعرض محتوى ديناميكي.
+                ممكن نستخدمها بين الـ tags أو داخل الـ attributes.
+            4. الـ children
+                children هو special prop بيوفره React.
+                بيحتوي على المحتوى الموجود بين opening و closing tags للـ Component.
+
+                مثال:
+                <Todo>Learn React</Todo>
+                هنا:
+                Learn React
+                بتوصل للـ Todo عن طريق children.
+
+            5. الـ Events
+                React يقدر يسمع للأحداث باستخدام event props زي onClick.
+                ونقدر نعمل props خاصة بينا زي onSelect.
+                الـ custom event props بتساعدنا نمرر functions بين الـ Components.
+            6. useState
+                useState بنستخدمه لإدارة البيانات اللي ممكن تتغير.
+                لما الـ state تتغير، React يعيد تنفيذ الـ Component.
+                React يعيد تقييم الـ JSX.
+                يقارن النتيجة القديمة بالجديدة.
+                وبعدها يحدث الـ UI في الأماكن اللي حصل فيها تغيير.
+            7. Conditional Rendering
+                نقدر نعرض محتوى مختلف حسب condition باستخدام:
+                    if
+                    Ternary operator ? :
+                    Logical AND &&
+            8. Rendering Lists
+                بنستخدم map() لتحويل الـ array إلى عناصر JSX.
+                todos.map(todo => <Todo>{todo}</Todo>)
+                لازم كل عنصر يكون له key مميز عشان React يقدر يتابع العناصر ويحدث الـ list بكفاءة.
+                الخلاصة
+                Components → JSX → Props → children → Events → State → Conditional Rendering → Lists & Keys
+_____________________________________________________                                     
+B) JSX 
+    - 1) Fragment component
+
+        (Task) Using React Fragments:-
+            Your task is to edit the existing Profile component so that it outputs the following content:
+                1. <h1>My Profile</h1>
+                2. <p>{userName}</p>
+                3. <p>{userAge}</p>
+            Requirements:
+                - All three elements must be returned from the Profile component.
+                - The elements must not be wrapped by any additional HTML element.
+                - Use React Fragments to group the elements.
+                - Do not use a <div> or any other HTML wrapper.
+
+            Question:
+                - function Profile({ userName, userAge }) {
+                    return null;
+                }
+
+                function App() {
+                    return (
+                        <div>
+                            < Profile userName= "" userAge= "" />
+                        </div>
+                    );
+                }
+
+                export default App;
+
+
+            Hint: Use the short syntax of React Fragments: <>...</>.
+            Bonus Challenge: Can you solve the task using <React.Fragment> instead of the short syntax?
+
+        (Task) Using React Fragments
+            Your task is to edit the existing Profile component so that it outputs the following content:
+                1. <h1>My Profile</h1>
+                2. <p>{userName}</p>
+                3. <p>{userAge}</p>
+            Requirements:
+                - All three elements must be returned from the Profile component.
+                - The elements must not be wrapped by any additional HTML element.
+                - Use React Fragments to group the elements.
+                - Do not use a <div> or any other HTML wrapper inside the Profile component.
+            Question:
+                function Profile({ userName, userAge }) {
+                return null;
+                }
+
+                function App() {
+                return (
+                    <div>
+                    <Profile userName="Mai" userAge={25} />
+                    </div>
+                );
+                }
+
+                export default App;
+
+            Hint: Use the short syntax of React Fragments: <>...</>.
+            Bonus Challenge: Can you solve the task using <React.Fragment> instead of the short syntax?
+
+            Solution (For Instructor)
+                function Profile({ userName, userAge }) {
+                return (
+                    <>
+                    <h1>My Profile</h1>
+                    <p>{userName}</p>
+                    <p>{userAge}</p>
+                    </>
+                );
+                }
+
+                function App() {
+                return (
+                    <div>
+                    <Profile userName="Mai" userAge={25} />
+                    </div>
+                );
+                }
+
+                export default App;
+
+
+
+            Bonus:
+                import React from "react";
+                function Profile({ userName, userAge }) {
+                return (
+                    <React.Fragment>
+                    <h1>My Profile</h1>
+                    <p>{userName}</p>
+                    <p>{userAge}</p>
+                    </React.Fragment>
+                );
+                }
+
+                function App() {
+                return (
+                    <div>
+                    <Profile userName="Mai" userAge={25} />
+                    </div>
+                );
+                }
+
+                export default App;
+    - 2) Splitting Components By Feature and State
+
+        a)- create src > components > CardContent.jsx
+            - CardContent.jsx
+                import { cardsData } from './data';
+                import Cards from './components/Cards'
+
+                export function CardContent(){
+                    return(
+                        <section id="cardContent">
+                                {
+                                cardsData.map((card) => (
+                                    <Cards key={card.title} {...card}/>
+                                ))
+                                }
+                            </section>
+                    )
+                }
+        b)- create src > components > CardContent.jsx
+            - CardContent.jsx
+                import { useState } from 'react';
+                import { tabsData } from '../data';
+                import TabButton from './TabButton';
+
+                export default function TabDetails(){
+                    const [selectedContent, setNewContent] = useState('')
+                    function handleTabSelect(content) {
+                        setNewContent(content)
+                        // console.log(selectedContent);
+                    }
+                    return (
+                        <section className="section2" id="details">
+                        <menu>
+                        <TabButton isSelected={selectedContent==="cleanse"} onSelectAction={() => handleTabSelect("cleanse")}>Cleanse</TabButton>
+                        <TabButton isSelected={selectedContent==="tone"} onSelectAction={() => handleTabSelect("tone")}>Tone</TabButton>
+                        <TabButton isSelected={selectedContent==="moisturize"} onSelectAction={() => handleTabSelect("moisturize")}>Moisturize</TabButton>
+                        <TabButton isSelected={selectedContent==="protect"} onSelectAction={() => handleTabSelect("protect")}>Protect</TabButton>
+                        </menu>
+
+                        <div id="tabContent">
+                        {(!selectedContent) ? (
+                            <p>Please Select Topic</p>
+                        ):(
+                            <div>
+                            <h3>{tabsData[selectedContent].title}</h3>
+                            <p>{tabsData[selectedContent].description}</p>
+                            </div>
+                        )}
+
+                        </div>
+                    </section>
+                    )
+                }
+        c)- in App.jsx
+            import TabDetails from './components/TabDetails';
+            import CardContent from './components/CardContent';
+
+            function App() {
+            return (
+                <>
+                <Header />
+                <CardContent />
+                
+                <TabDetails />
+                <Form />
+
+                <section className="section2">
+                    <Footer />
+                </section>
+                    
+
+                </>
+            )
+            }
